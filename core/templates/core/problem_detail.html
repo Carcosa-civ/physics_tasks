@@ -11,7 +11,7 @@
 {% if result %}
     <div class="alert alert-{% if result.is_correct %}success{% else %}danger{% endif %}">
         <strong>Результат:</strong>
-        {% if result.is_correct %}Верно!{% else %}Неверно. Правильный ответ: {{ result.correct_answer }}{% endif %}
+        {% if result.is_correct %}Верно!{% else %}Неверно. Правильный ответ: {{ result.correct }}{% endif %}
     </div>
 {% endif %}
 
