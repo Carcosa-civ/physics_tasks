@@ -1,0 +1,15 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Контрольные работы</h1>
+<div class="grid">
+    {% for test in tests %}
+        <div class="card">
+            <h3>{{ test.title }}</h3>
+            <p>Тема: {{ test.topic.name }}</p>
+            <a href="{% url 'core:test_take' test.id %}" class="btn">Пройти</a>
+        </div>
+    {% empty %}
+        <p>Нет контрольных работ.</p>
+    {% endfor %}
+</div>
+{% endblock %}

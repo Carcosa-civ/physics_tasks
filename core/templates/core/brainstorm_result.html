@@ -1,0 +1,20 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Результаты мозгового штурма</h1>
+<p><strong>Правильных ответов:</strong> {{ score }} из {{ total }}</p>
+{% for res in results %}
+    <div class="card {% if res.is_correct %}border-success{% else %}border-danger{% endif %}">
+        <h3>{{ res.problem.title }}</h3>
+        <p><strong>Условие:</strong> {{ res.problem.condition|linebreaks }}</p>
+        <p><strong>Ваш ответ:</strong>
+            <span class="{% if res.is_correct %}text-success{% else %}text-danger{% endif %}">
+                {{ res.user_answer }}
+            </span>
+        </p>
+        {% if not res.is_correct %}
+            <p><strong>Правильный ответ:</strong> {{ res.correct_answer }}</p>
+        {% endif %}
+    </div>
+{% endfor %}
+<a href="{% url 'core:brainstorm_form' %}" class="btn btn-success">Новый штурм</a>
+{% endblock %}

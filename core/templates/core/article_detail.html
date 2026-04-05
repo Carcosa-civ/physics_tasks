@@ -1,0 +1,24 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>{{ article.title }}</h1>
+<p><strong>Тема:</strong> {{ article.topic.name }}</p>
+<div class="card">
+    {{ article.content|linebreaks }}
+</div>
+{% if article.image %}
+    <img src="{{ article.image.url }}" alt="Иллюстрация" style="max-width:100%; margin-top:1rem;">
+{% endif %}
+
+<h2>Задачник</h2>
+<ul>
+    {% for problem in problems %}
+        <li><a href="{% url 'core:problem_detail' problem.id %}">{{ problem.title }}</a></li>
+    {% empty %}
+        <li>Нет задач по этой теме.</li>
+    {% endfor %}
+</ul>
+
+{% if test %}
+    <p><a href="{% url 'core:test_take' test.id %}" class="btn btn-success">Контрольная работа по теме</a></p>
+{% endif %}
+{% endblock %}

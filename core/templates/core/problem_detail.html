@@ -1,0 +1,34 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>{{ problem.title }}</h1>
+<p>Тема: <a href="{{ problem.topic.get_absolute_url }}">{{ problem.topic.name }}</a></p>
+
+<div class="card">
+    <h3>Условие:</h3>
+    <p>{{ problem.condition|linebreaks }}</p>
+</div>
+
+{% if result %}
+    <div class="alert alert-{% if result.is_correct %}success{% else %}danger{% endif %}">
+        <strong>Результат:</strong>
+        {% if result.is_correct %}Верно!{% else %}Неверно. Правильный ответ: {{ result.correct_answer }}{% endif %}
+    </div>
+{% endif %}
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn">Проверить</button>
+</form>
+
+<h2>Задачи на ту же тему</h2>
+<div class="grid">
+    {% for prob in similar_problems %}
+        <div class="card">
+            <a href="{% url 'core:problem_detail' prob.id %}">{{ prob.title }}</a>
+        </div>
+    {% empty %}
+        <p>Нет других задач по этой теме.</p>
+    {% endfor %}
+</div>
+{% endblock %}

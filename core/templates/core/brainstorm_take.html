@@ -1,0 +1,14 @@
+{% extends 'core/base.html' %}
+{% block content %}
+<h1>Мозговой штурм</h1>
+<p>Вопрос {{ current_index }} из {{ total }}</p>
+<div class="card">
+    <h3>{{ problem.title }}</h3>
+    <p>{{ problem.condition|linebreaks }}</p>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn">Ответить</button>
+    </form>
+</div>
+{% endblock %}
