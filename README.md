@@ -70,7 +70,6 @@ python manage.py runserver
 Пример настройки для данного проекта
 Установите python-dotenv (обычно уже есть в requirements.txt):
 
-bash
 pip install python-dotenv
 Создайте в корне проекта (рядом с manage.py) файл .env со следующим содержимым:
 
@@ -98,7 +97,6 @@ DEBUG = os.getenv('DEBUG') == 'True'
 Проверка качества кода
 Для проверки кода используется pylint с плагином pylint-django. Запустите скрипт pylint.bat (Windows) или выполните вручную:
 
-bash
 pylint --rcfile=.pylintrc core
 Ожидаемая оценка: не ниже 9.0/10.
 
